@@ -71,3 +71,19 @@ if theme.valine
             path: window.location.pathname,
             avatar:'#{theme.valine.avatar}'
           })
+
+if theme.gitment
+    div#container
+    link(rel="stylesheet", href='https://imsun.github.io/gitment/style/default.css')
+    script(src='https://imsun.github.io/gitment/dist/gitment.browser.js')
+    script.
+        var gitment = new Gitment({
+        id: '#{page.title}',
+        owner: '#{theme.gitment.owner}',
+        repo: '#{theme.gitment.repo}',
+        oauth: {
+            client_id: '#{theme.gitment.client_id}',
+            client_secret: '#{theme.gitment.client_secret}'
+        },
+        })
+        gitment.render('container')
