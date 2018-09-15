@@ -27,9 +27,14 @@ getValue.apply(a, ['yck', '12'])
 ```javascript
 Function.prototype.myCall = function () {
   var context = context || window
+  // 给context添加一个属性
+  // getVaule.call(a, 'yck', '12') => a.fn = getValue
   context.fn = this
+  // 将 context 后面的参数取出来
   var args = [...arguments].slice(1)
-  var result = context.fn
+  // getValue.call(a, 'yck', '12') => a.fn('yck', '12')
+  var result = context.fn(...args)
+  // 删除fn
   delete context.fn
   return result
 }
